@@ -19,8 +19,8 @@ public class AppleWarehouse {
         return apples;
     }
 
-    public Integer findGreenApples() {
-        return apples.stream().filter(obj -> obj.getColor().equals("green")).mapToInt(Apple::getWeight).sum();
+    public Integer findTApplesByColor(String color) {
+        return apples.stream().filter(obj -> obj.getColor().equals(color)).mapToInt(Apple::getWeight).sum();
     }
 }
 
