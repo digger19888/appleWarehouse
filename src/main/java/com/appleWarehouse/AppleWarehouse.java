@@ -2,6 +2,7 @@ package com.appleWarehouse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppleWarehouse {
     private List<Apple> apples = getAllApples();
@@ -21,6 +22,10 @@ public class AppleWarehouse {
 
     public Integer findTApplesByColor(String color) {
         return apples.stream().filter(obj -> obj.getColor().equals(color)).mapToInt(Apple::getWeight).sum();
+    }
+
+    public List<Apple> findTApplesByWeight(int weight) {
+        return apples.stream().filter(obj -> obj.getWeight() > weight).collect(Collectors.toList());
     }
 }
 

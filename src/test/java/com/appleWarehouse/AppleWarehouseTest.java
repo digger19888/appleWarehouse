@@ -3,19 +3,26 @@ package com.appleWarehouse;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 public class AppleWarehouseTest {
+    private final AppleWarehouse appleWarehouse = new AppleWarehouse();
 
     @Test
     public void checkTotalWeightByColorGreen() {
-        AppleWarehouse appleWarehouse = new AppleWarehouse();
-        int total = appleWarehouse.findTApplesByColor("green");
-        Assert.assertEquals(340, total);
+        int totalGreen = appleWarehouse.findTApplesByColor("green");
+        Assert.assertEquals(340, totalGreen);
     }
 
     @Test
     public void checkTotalWeightByColorRed() {
-        AppleWarehouse appleWarehouse = new AppleWarehouse();
-        int total = appleWarehouse.findTApplesByColor("red");
-        Assert.assertEquals(460, total);
+        int totalRed = appleWarehouse.findTApplesByColor("red");
+        Assert.assertEquals(460, totalRed);
+    }
+
+    @Test
+    public void shouldFindApplesHavierThan() {
+        List<Apple> applesHavierThan150 = appleWarehouse.findTApplesByWeight(150);
+        Assert.assertEquals(4, applesHavierThan150.size());
     }
 }
