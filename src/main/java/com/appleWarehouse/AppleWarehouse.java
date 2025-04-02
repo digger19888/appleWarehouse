@@ -27,5 +27,50 @@ public class AppleWarehouse {
     public List<Apple> findTApplesByWeight(int weight) {
         return apples.stream().filter(obj -> obj.getWeight() > weight).collect(Collectors.toList());
     }
+
+
+    public List<Apple> findApples(AppleSearchCriteria searchCriteria) {
+        List<Apple> result = new ArrayList<>();
+        for(Apple apple : apples) {
+            if(searchCriteria.test(apple)) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    static class GreenAppleSearchCriteria implements AppleSearchCriteria {
+        @Override
+        public boolean test(Apple apple) {
+            return "green".equals(apple.getColor());
+        }
+    }
+
+    static class RedAppleSearchCriteria implements AppleSearchCriteria {
+        @Override
+        public boolean test(Apple apple) {
+            return "red".equals(apple.getColor());
+        }
+    }
+
+    static class LightAppleSearchCriteria implements AppleSearchCriteria {
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() < 150;
+        }
+    }
+
+    static class HeavyAppleSearchCriteria implements AppleSearchCriteria {
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() > 150;
+        }
+    }
+    static class HeavyAndGreenAppleSearchCriteria implements AppleSearchCriteria {
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() > 150 && "green".equals(apple.getColor());
+        }
+    }
 }
 
