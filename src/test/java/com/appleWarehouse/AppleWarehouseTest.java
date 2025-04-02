@@ -91,6 +91,17 @@ public class AppleWarehouseTest {
         List<Apple> heavyAndGreenApples = appleWarehouse.findApples(new AppleWarehouse.HeavyAndGreenAppleSearchCriteria());
         Assert.assertEquals(1, heavyAndGreenApples.size());
 
+    }
 
+    @Test
+    public void shouldFindApplesWithAbstract() {
+        List<Apple> greenApples = appleWarehouse.findApples(apple -> "green".equals(apple.getColor()));
+        Assert.assertEquals(3, greenApples.size());
+        List<Apple> redApples = appleWarehouse.findApples(apple -> "red".equals(apple.getColor()));
+        Assert.assertEquals(3, redApples.size());
+        List<Apple> HavierThan150Apples = appleWarehouse.findApples(apple -> apple.getWeight() > 150);
+        Assert.assertEquals(4, HavierThan150Apples.size());
+        List<Apple> lighterThan150Apples = appleWarehouse.findApples(apple -> apple.getWeight() < 150);
+        Assert.assertEquals(4, lighterThan150Apples.size());
     }
 }
